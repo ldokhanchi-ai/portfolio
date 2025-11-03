@@ -1,0 +1,506 @@
+<html>
+    <head>
+        <title>My Portfolio</title>
+        <link rel="stylesheet" href="website.css"/>
+    </head>
+     <!-- Metadata -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Journalism portfolio for Lily Dokhanchi — writing, projects, and resume." />
+  <meta name="author" content="Lily Dokhanchi" />
+  <meta property="og:title" content="Lily Dokhanchi — Journalism Portfolio" />
+  <meta property="og:description" content="Writing, projects, and resume." />
+  <!-- Accessible pink for header/theme -->
+  <meta name="theme-color" content="#c2185b" />
+  <title>Lily Dokhanchi — Portfolio</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+
+  <style>
+    :root{
+      --bg:#f9fafb;
+      --text:#111827;
+      --muted:#4b5563;
+      --card:#ffffff;
+      --accent:#c2185b;            /* pink with strong contrast on white text */
+      --accent-contrast:#ffffff;
+      --border:#e5e7eb;
+      --focus:#f59e0b;
+      --maxw:1100px;
+
+      /* Header colors (accessible pinks) */
+      --header-bg:#c2185b;   /* AA contrast on white text */
+      --header-hover:#880e4f;
+      --header-border:#a2134c;
+      --header-text:#ffffff;
+      --header-sub:#f3e8ee;
+    }
+
+    /* Base / Reset-ish */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      line-height:1.6;
+      color:var(--text);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:2px;
+      border-radius:6px;
+    }
+
+    img{max-width:100%; height:auto; display:block}
+
+    /* Layout */
+    .wrap{max-width:var(--maxw); margin-inline:auto; padding:1rem;}
+    header.site-header{
+      background:var(--header-bg); color:var(--header-text);
+      position:sticky; top:0; z-index:10;
+      border-bottom:1px solid var(--header-border);
+    }
+    .nav-bar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; padding:0.75rem 1rem;
+    }
+    .brand{
+      display:flex; align-items:baseline; gap:0.75rem;
+    }
+    .brand h1{
+      font-size:clamp(1.25rem, 2.5vw, 1.75rem);
+      margin:0; line-height:1.2;
+      color:var(--header-text);
+    }
+    .brand .role{
+      color:var(--header-sub); font-size:0.95rem;
+    }
+    nav ul{display:flex; gap:1rem; list-style:none; padding:0; margin:0;}
+    nav a{color:var(--header-text); padding:0.35rem 0.5rem; border-radius:6px}
+    nav a:hover, nav a:focus-visible{background-color:var(--header-hover); text-decoration:none}
+
+    /* Skip link */
+    .skip-link{
+      position:absolute; left:-9999px; top:auto;
+    }
+    .skip-link:focus{
+      left:1rem; top:1rem; background:#fff; color:#000; padding:0.5rem 0.75rem; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.2);
+    }
+
+    /* Sections */
+    .section{padding-block:2.25rem; scroll-margin-top:90px;}
+    .section h2{
+      font-size:clamp(1.4rem, 2.7vw, 1.8rem);
+      margin:0 0 0.75rem;
+      line-height:1.3;
+    }
+    .lead{color:var(--muted)}
+
+    .about{
+      display:grid; grid-template-columns:1fr; gap:1.25rem;
+    }
+    .about figure{margin:0}
+    .headshot{
+      width:min(240px, 70vw);
+      border-radius:999px; border:4px solid var(--border);
+      box-shadow:0 2px 12px rgba(0,0,0,.08);
+    }
+    @media (min-width:720px){
+      .about{grid-template-columns:320px 1fr; align-items:start}
+    }
+    .name-big{
+      font-size:clamp(2rem, 6vw, 3rem);
+      margin:0.25rem 0 0.5rem;
+      line-height:1.1;
+    }
+
+    /* Cards / Grid */
+    .grid{
+      display:grid; gap:1rem;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:560px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (min-width:960px){ .grid{grid-template-columns:1fr 1fr 1fr} }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1rem;
+      box-shadow:0 1px 4px rgba(0,0,0,.04);
+      display:flex; flex-direction:column; gap:0.5rem;
+    }
+    .card h3{margin:0 0 0.25rem; font-size:1.05rem}
+    .card p.description{color:var(--muted); font-size:0.92rem; margin:0 0 0.25rem;}
+    .meta{color:var(--muted); font-size:0.92rem}
+    .tags{display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.25rem}
+    .tag{
+      font-size:0.8rem; background:#fde7ef; color:#7a1239;
+      border:1px solid #f8b8cf; border-radius:999px;
+      padding:0.15rem 0.55rem;
+    }
+    .card .cta{
+      margin-top:auto; align-self:flex-start;
+      background:var(--accent); color:var(--accent-contrast);
+      padding:0.45rem 0.7rem; border-radius:8px; text-decoration:none; font-weight:600;
+    }
+    .card .cta:hover{opacity:.9; text-decoration:none}
+
+    /* Make all Featured Work images uniform */
+    .card img{
+      width:100%;
+      height:200px;        /* adjust to taste (200–250px) */
+      object-fit:cover;    /* crop without distortion */
+      border-radius:8px;
+    }
+
+    /* Resume chips (oval pills) */
+    .list-inline{
+      display:flex; flex-wrap:wrap; gap:0.5rem;
+      padding:0; margin:0.5rem 0 0; list-style:none;
+    }
+    .chip{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:999px; /* oval */
+      padding:0.25rem 0.6rem;
+      font-size:0.9rem;
+    }
+
+    /* Projects (covers) */
+.cover-grid{
+  display:grid; 
+  gap:1rem;
+  grid-template-columns:1fr; /* 1 per row on mobile */
+}
+@media (min-width:600px){
+  .cover-grid{grid-template-columns:1fr 1fr} /* 2 per row on tablets */
+}
+@media (min-width:900px){
+  .cover-grid{grid-template-columns:repeat(3, 1fr)} /* 3 per row on desktop */
+}
+.cover-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform .1s ease-in-out;
+}
+.cover-card:hover{transform:translateY(-2px)}
+.cover-card a{display:block}
+.cover{
+  aspect-ratio:3/4;
+  object-fit:cover;
+  width:100%;
+}
+.cover-caption{
+  padding:0.6rem 0.8rem;
+  font-size:0.95rem;
+  color:var(--muted);
+}
+
+
+    /* Thesis link */
+    .thesis-link{
+      font-size:1.4rem;
+      font-weight:700;
+      margin:0 0 1rem;
+    }
+    .thesis-link a{color:var(--accent);}
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--border);
+      background:#ffffff;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+    .footer-grid{
+      display:grid; gap:1rem; grid-template-columns:1fr;
+      padding:1.25rem 1rem;
+    }
+    @media (min-width:720px){ .footer-grid{grid-template-columns:2fr 1fr} }
+    .fine{font-size:0.9rem}
+
+    /* Motion */
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto}
+    }
+    html{scroll-behavior:smooth}
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header / Nav -->
+  <header class="site-header" role="banner">
+    <div class="nav-bar wrap" aria-label="Primary">
+      <div class="brand">
+        <h1>Lily Dokhanchi</h1>
+        <span class="role" aria-label="Professional role">Writer • Storyteller</span>
+      </div>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Featured Work</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="main" class="wrap" role="main">
+
+    <!-- About -->
+    <section id="about" class="section" aria-labelledby="about-h">
+      <p class="lead">I've always been a storyteller. Whether it's science, history, news or the arts, I hope there's something here for you.</p>
+      <h2 id="about-h">About</h2>
+
+      <div class="about">
+        <figure>
+          <img
+            class="headshot"
+            src="https://lh3.googleusercontent.com/pw/AP1GczMbbn53kNak0QgQ2L74H89SZ03ftbxL0QrpaMqhPbIkTsde6o0C2jdMrc8cfQ7GcprHx42YoCmfY7AQNRG9i557epVFdQinFWefM2AOERHf7oOaQz6NTrO-8s9GeYp2SEoYLuC2yYEK3iYpTpquEUvlbg=w840-h1120-s-no-gm?authuser=0"
+            alt="Headshot of Lily Dokhanchi smiling in natural light" />
+        </figure>
+
+        <div>
+          <h3 class="name-big">Lily Dokhanchi</h3>
+          <p>
+            I’m a writer and reporter based in Chicago with a passion for storytelling and making complex topics accessible for all readers. I am currently pursuing my Master of Science in Journalism at Northwestern's Medill School in the Magazine specialty. My work spans profiles, narrative features, interviews, science and health communication. I bring experience in writing, reporting, copyediting and packaging stories across text, audio and visual formats. Check out my work below and feel free to contact me — I'd love to connect.
+          </p>
+          <p><strong>Beats/Interests:</strong> Culture & fashion, profiles, science/health, education policy, current events and political news.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Work -->
+    <section id="work" class="section" aria-labelledby="work-h">
+      <h2 id="work-h">Featured Work</h2>
+      <p class="lead">A selection of stories and articles I’ve written and published.</p>
+
+      <div class="grid" role="list">
+        <!-- Card 1 -->
+        <a class="card" role="listitem"
+           href="https://beckman.illinois.edu/news/article/2024/06/06/beckman-s-owl-patrol-takes-flight"
+           target="_blank" rel="noopener">
+          <h3>Beckman’s Owl Patrol takes flight</h3>
+          <p class="description">News feature on Beckman's outreach committee.</p>
+          <img src="https://lh3.googleusercontent.com/pw/AP1GczM7KDsshFAQlEpNfuHbIIgy78ezCTfryJCJ_7zVc7Ux4T98JUTQ_vZkIco5FW4jD3ywQg7ML6ngs4VWu2V815hNCSoz7ENNGcqEuXWU5IQBGqdvmshAWsU5yfva__khd9ExqiLTr1569dlRqFJLYyY=w612-h611-s-no-gm?authuser=0" 
+               alt="Beckman Institute building with blue sky" />
+          <p class="meta">Writer/Reporter · Beckman Institute · June 6, 2024</p>
+          <div class="tags">
+            <span class="tag">Feature</span>
+            <span class="tag">Community</span>
+          </div>
+          <span class="cta">Read story</span>
+        </a>
+
+        <!-- Card 2 -->
+        <a class="card" role="listitem"
+           href="https://english.illinois.edu/news/2025-02-11t161159/write-what-you-know-unusual-journey-led-haunting-novel"
+           target="_blank" rel="noopener">
+          <h3>Write what you know: The unusual journey that led to a haunting novel</h3>
+          <p class="description">Profile on Illinois English Department alumnus and published author.</p>
+          <img src="https://lh3.googleusercontent.com/pw/AP1GczNLhFO6qiBT12Ww4XH-1zgb_UrySdhk8IyKzpwidE17HEYO6qdwFVBsYyS6C4SkhLEhKMuRFwajjq-S5bzzC0L76rtfWDaP5cfnoxXyE310rQX_eTSnlarR_P9BdmzCzc_Xv0v87ANZE-2QqPlrmQI=w617-h614-s-no-gm?authuser=0" 
+               alt="University of Illinois English building with columns" />
+          <p class="meta">Writer/Reporter · UIUC English Department · February 11, 2025</p>
+          <div class="tags">
+            <span class="tag">Profile</span>
+            <span class="tag">Literature</span>
+          </div>
+          <span class="cta">Read story</span>
+        </a>
+
+        <!-- Card 3 -->
+        <a class="card" role="listitem"
+           href="https://beckman.illinois.edu/news/article/2024/05/13/freewheeling-wellness-redefining-exercise-for-manual-wheelchair-users"
+           target="_blank" rel="noopener">
+          <h3>Freewheeling wellness: Redefining exercise for manual wheelchair users</h3>
+          <p class="description">Profile of Beckman Institute researcher.</p>
+          <img src="https://lh3.googleusercontent.com/pw/AP1GczNrKyLmozgX5vs2eZG2ELgtSsl-SSOCjTWSfuBPBUNMd2f5umfyIoJMIagzYZLShyl3mbEq29_fqsaSIgPLYkH5C6SD8c1T-Uexthp9mWvcL6_3ktVhFAl8ocnbovBm4uwdyAxpFW7iGN5BTJ9GbAE=w617-h620-s-no-gm?authuser=0" 
+               alt="Researcher demonstrating exercise for wheelchair users" />
+          <p class="meta">Writer/Reporter · Beckman Institute · May 13, 2024</p>
+          <div class="tags">
+            <span class="tag">Health</span>
+            <span class="tag">Profile</span>
+          </div>
+          <span class="cta">Read story</span>
+        </a>
+
+        <!-- Card 4 -->
+        <a class="card" role="listitem"
+           href="https://publications.aap.org/aapnews/news/25420/What-parents-should-know-about-high-powered?autologincheck=redirected"
+           target="_blank" rel="noopener">
+          <h3>What parents should know about high-powered magnets</h3>
+          <p class="description">American Academy of Pediatrics news story on how to avoid magnet-related injuries in children.</p>
+          <img src="https://lh3.googleusercontent.com/pw/AP1GczOpg-Op0kUHJZwLvIcqQWzhOdsA3paxqpfic-0rWbvd9BirZ-_6uDusWSv9Rg4H5aOVCHMU13xoiM6MTB35zxlO_612-46TL_vl_mzWdZDyFz4mHCRmiA0CGH-sufg4WCBTPw_iAZIcf84el8AdrYE=w550-h367-s-no-gm?authuser=0" 
+               alt="Cluster of high-powered magnets stacked and loose on a desk" />
+          <p class="meta">Writer/Reporter · AAP News · September 1, 2023</p>
+          <div class="tags">
+            <span class="tag">Health</span>
+            <span class="tag">Parenting</span>
+          </div>
+          <span class="cta">Read story</span>
+        </a>
+
+        <!-- Card 5 -->
+        <a class="card" role="listitem"
+           href="https://ilsurj.illinois.edu/scd-and-aero-collab/"
+           target="_blank" rel="noopener">
+          <h3>“Collaboration at its Finest:” The Siebel Center for Design and the Department of Aerospace Engineering</h3>
+          <p class="description">Feature story on interdisciplinary work at UIUC.</p>
+          <img src="https://lh3.googleusercontent.com/pw/AP1GczOShaAT8hJTaigotQTkOvON0-VgmnQIluFgwFJmBwCsrgHIha4OREY4UpFRdVMD4UVA-If5mncORaR97k6XFS2DExWCjqRvzpZmfAswcEsoYaJ5Ze_3cywbL1g77vxEhElq3crPf2fZW3J2vF07ctg=w621-h620-s-no-gm?authuser=0" 
+               alt="Students collaborating on research project" />
+          <p class="meta">Writer/Reporter · Illinois Student Undergraduate Research Journal · February 21, 2024</p>
+          <div class="tags">
+            <span class="tag">Research</span>
+            <span class="tag">Education</span>
+          </div>
+          <span class="cta">Read story</span>
+        </a>
+
+        <!-- Card 6 -->
+        <a class="card" role="listitem"
+           href="https://dailyillini.com/uncategorized/2022/03/22/test-anxiety-college/"
+           target="_blank" rel="noopener">
+          <h3>Students experience anxiety, confusion with in-person exams</h3>
+          <p class="description">Daily Illini feature on student experience of testing conditions during the COVID-19 pandemic.</p>
+          <img src="https://lh3.googleusercontent.com/pw/AP1GczMBVpmHlI7xbCD9GSz2yA4368ScRngSY_I73XoQBP6m4KBeLW6uuTY1sxtmQSZ8hc1PZKALmecxvPKcP8nPOAbpLT1_XE9XnhIKk7_ZexF25sesmaiARVFpbMw_5fhePRfuGMNq2kF3S3zPoivhsfw=w618-h609-s-no-gm?authuser=0" 
+               alt="Student sitting at a desk with head down, stressed during exam" />
+          <p class="meta">Writer/Reporter · Daily Illini · March 22, 2022</p>
+          <div class="tags">
+            <span class="tag">Education</span>
+            <span class="tag">Student Life</span>
+          </div>
+          <span class="cta">Read story</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Full Portfolio Link -->
+    <section id="full-portfolio" class="section" aria-labelledby="portfolio-h">
+      <h2 id="portfolio-h" class="visually-hidden">Full Portfolio</h2>
+      <p style="font-size:1.4rem; margin-top:1.5rem;">
+        View my <a href="https://www.lilydokhanchi.com/publications" target="_blank" rel="noopener"><strong>full writing portfolio</strong></a> for additional clips and publications.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+      <p class="lead">Explore my <u>Senior Honors Thesis</u> below, followed by arts journals and scientific publications I’ve helped create. Click any cover to view the full work.</p>
+
+      <!-- Senior Honors Thesis link (above cards) -->
+      <p class="thesis-link">
+        <a href="https://assets.codepen.io/11640512/Lily%20Dokhanchi_Spring25_HonorsThesis.pdf" target="_blank" rel="noopener">
+          <u>Senior Honors Thesis</u>: <em>Women As Money Versus Women Having Money: Paths to Autonomy in the Victorian Marriage Plot</em>
+        </a>
+      </p>
+
+      <!-- One card per project -->
+      <div class="cover-grid" role="list">
+        <!-- ILSURJ -->
+        <article class="cover-card" role="listitem">
+          <a href="https://ilsurj.illinois.edu/explore-content/" target="_blank" rel="noopener"
+             aria-label="Open ILSURJ Explore Content (new tab)">
+            <img class="cover"
+                 src="https://lh3.googleusercontent.com/pw/AP1GczMCoX6n0mYi5FAQLtcEMQ50C-BU7xjmSFborgTUhMqcRAW-HM-W7GnQGJW11cpBfqVg1mKnGmgWoB3Rjr5GvvnPJXzm_Ru-gLy5mHfOftYuYIpTX87WC_npouhUJ6DnWpp6DYlDPuZmLF9pwlyuV1U=w942-h1368-s-no-gm?authuser=0"
+                 alt="Cover of ILSURJ — Illinois Student Undergraduate Research Journal" />
+          </a>
+          <div class="cover-caption">Illinois Student Undergraduate Research Journal — Spring 2024 Issue</div>
+        </article>
+
+        <!-- Montage 2023–2024 -->
+        <article class="cover-card" role="listitem">
+          <a href="https://issuu.com/montagejournal/docs/montage_2023-2024_issuu" target="_blank" rel="noopener"
+             aria-label="Open Montage 2023–2024 (new tab)">
+            <img class="cover"
+                 src="https://lh3.googleusercontent.com/pw/AP1GczOU6QI2YwaZ_xuo3NEamf19thb-VFdvVhI502phaXRyTJXLqOOvWzJb4TyDlPYXmmGZ6eU9Ey3mqWiAUVD1t7_dvOiGFNyZkgyEX-2DNS_sIP8ILstry_RbpjzIxVEq6f1Pd4kWuyybGS1-LyLSnMI=w850-h1206-s-no-gm?authuser=0"
+                 alt="Cover of Montage Arts Journal 2023–2024 Issue" />
+          </a>
+          <div class="cover-caption">Montage Arts Journal — 2023–2024 Issue</div>
+        </article>
+
+        <!-- Montage 2022–2023 -->
+        <article class="cover-card" role="listitem">
+          <a href="https://issuu.com/montagejournal/docs/montage_2022-2023" target="_blank" rel="noopener"
+             aria-label="Open Montage 2022–2023 (new tab)">
+            <img class="cover"
+                 src="https://lh3.googleusercontent.com/pw/AP1GczPPgZgI_Ow-HzLRxvxuZAxljr3Mz_g7cvAWd106fKdurPhzs6WnY3_QIJuWxIagxij4Hy5XljT7pzTtVhd5avGt1Zrh-005XWF3Eh7_oEiqNaDKKsmN8-OJd6zWafYnTyGV_7EdUxLYBjrBy-jqink=w846-h1192-s-no-gm?authuser=0"
+                 alt="Cover of Montage Arts Journal 2022–2023 Issue" />
+          </a>
+          <div class="cover-caption">Montage Arts Journal — 2022–2023 Issue</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume" class="section" aria-labelledby="resume-h">
+      <h2 id="resume-h">Resume</h2>
+      <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 1.5rem;">
+        <a class="cta" href="file:///Users/lilydokhanchi/Downloads/Lily.Dokhanchi%20Resume%20(1).pdf" target="_blank" rel="noopener">
+          Download PDF Resume
+        </a>
+      </p>
+
+      <h3>Key Skills</h3>
+      <ul class="list-inline" aria-label="skills">
+        <li class="chip">Reporting & interviewing</li>
+        <li class="chip">Editing & fact-checking</li>
+        <li class="chip">AP Style</li>
+        <li class="chip">HTML/CSS</li>
+        <li class="chip">Research & analysis</li>
+        <li class="chip">Adobe Suite</li>
+        <li class="chip">Digital content</li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <p>Email: <a href="mailto:ldokhanchi@gmail.com">ldokhanchi@gmail.com</a></p>
+      <p>Social:
+        <a href="https://www.linkedin.com/in/lilydokhanchi" target="_blank" rel="noopener">LinkedIn</a> ·
+        <a href="https://www.instagram.com/lilydokhanchi/" target="_blank" rel="noopener">Instagram</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer (copyright, last updated, AI disclosure) -->
+  <footer role="contentinfo">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="fine">© <span id="year"></span> Lily Dokhanchi. All rights reserved.</p>
+        <p class="fine">Last updated: <span id="lastUpdated"></span></p>
+      </div>
+      <div>
+        <p class="fine">
+          <strong>AI Disclosure:</strong> This page was built by me. I used generative AI for brainstorming layout, drafting placeholder microcopy, and refactoring CSS; all content was reviewed/edited by me.
+          See <a href="https://docs.google.com/document/d/1Mmc6fCooxUJ0pLaXpprOyvPQYZpbpzyDCdy37GmDWzY/edit?usp=sharing" target="_blank" rel="noopener">ai.doc</a> for a brief log.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Footer helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const modified = new Date(document.lastModified);
+    document.getElementById('lastUpdated').textContent = modified.toLocaleDateString(undefined, {
+      year:'numeric', month:'short', day:'numeric'
+    });
+  </script>
+</body>
+</html>
